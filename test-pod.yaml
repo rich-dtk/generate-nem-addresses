@@ -9,4 +9,8 @@ spec:
   containers:
   - name: test
     image: private-registry.registry.svc.cluster.local:30838/generate-addresses
-    command: ["sleep", "100000"]
+    command: ["/bin/sh", "-c"]
+    args:
+    - /home/mijin/_build/bin/catapult.tools.address --generate=50 --network=mijin-test > /tmp/raw_addresses_path.txt;
+      sleep 100000
+
