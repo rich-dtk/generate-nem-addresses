@@ -10,3 +10,15 @@ namespace = File.read('/var/run/secrets/kubernetes.io/serviceaccount/namespace')
 require 'pp'
 pp "namespace = #{namespace}"
 pp client.get_pods(namespace: namespace)
+
+require('json')
+cm = {
+  metadata: {
+    name: 'test',
+    namespace: 'test'
+  },
+  data: {
+    val: JSON.generate([:a, :b])
+  }
+}
+client.create_config_map(cm)
