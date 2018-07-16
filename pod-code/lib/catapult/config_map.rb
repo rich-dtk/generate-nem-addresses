@@ -17,7 +17,7 @@ module Catapult
       self.kube_client.create_config_map(params)
     end
     
-    def exists?(name)
+    def config_map_exists?(name)
       begin
         self.kube_client.get_config_map(name, namespace)
       rescue ::Kubeclient::ResourceNotFoundError
