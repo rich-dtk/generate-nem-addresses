@@ -18,7 +18,11 @@ module Catapult
     end
     
     def exists?(name)
-      self.kube_client.get_config_map(name, namespace)
+      begin
+        self.kube_client.get_config_map(name, namespace)
+      rescue ::Kubeclient::ResourceNotFoundError
+        nil
+      end
     end
     
     protected
